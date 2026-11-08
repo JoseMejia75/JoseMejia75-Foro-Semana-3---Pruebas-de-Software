@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}{{ 'Editar' if task else 'Nueva' }} tarea{% endblock %}
+{% block content %}
+<h2>{{ 'Editar' if task else 'Nueva' }} tarea</h2>
+<form method="post">
+  <label for="title">Título</label><input name="title" id="title" value="{{ request.form.get('title', task['title'] if task else '') }}" required>
+  <label for="description">Descripción</label><textarea name="description" id="description">{{ request.form.get('description', task['description'] if task else '') }}</textarea>
+  <label for="due_date">Fecha límite (AAAA-MM-DD)</label><input name="due_date" id="due_date" value="{{ request.form.get('due_date', (task['due_date'] or '') if task else '') }}">
+  <label for="assignee">Asignar a (nombre de usuario)</label><input name="assignee" id="assignee" value="{{ request.form.get('assignee', assignee_name or '') }}">
+  <p><button type="submit">Guardar</button></p>
+</form>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Mi perfil{% endblock %}
+{% block content %}
+<h2>Mi perfil</h2>
+<form method="post">
+  <label for="username">Usuario</label><input name="username" id="username" value="{{ g.user['username'] }}" required>
+  <label for="email">Correo</label><input type="email" name="email" id="email" value="{{ g.user['email'] }}" required>
+  <p><button type="submit">Guardar cambios</button></p>
+</form>
+<h3>Cambiar contraseña</h3>
+<form method="post" action="{{ url_for('profile.change_password') }}">
+  <label for="current_password">Contraseña actual</label><input type="password" name="current_password" id="current_password" required>
+  <label for="new_password">Contraseña nueva</label><input type="password" name="new_password" id="new_password" required>
+  <p><button type="submit">Cambiar contraseña</button></p>
+</form>
+{% endblock %}
